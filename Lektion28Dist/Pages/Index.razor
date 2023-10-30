@@ -1,0 +1,63 @@
+﻿@page "/"
+@using Lektion28Dist.Classes;
+@using Lektion28Dist.Extensions;
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+@* @foreach (var s in strings.Get(null))
+{
+    <div>@s</div>
+} *@
+
+@foreach (var a in animals.GetNames())
+{
+    <div>@a.Name</div>
+}
+
+@foreach (var c in cats.GetNames())
+{
+    <div>@c.Name</div>
+}
+
+@foreach (var c in customers.GetNames())
+{
+    <div>@c.Name</div>
+}
+
+@code{
+    protected override void OnInitialized()
+    {
+        animals.Add(null);
+        animals.Add(new Animal() { Name = "Cheetha" });
+
+        customers.Add(null);
+        customers.Add(new Customer() { Name = "Carl" });
+
+    }
+
+    /*GenericList<string> strings = new()
+    {
+        "Jonas",
+        "Fagerberg"
+    };*/
+
+    GenericList<Animal> animals = new()
+    {
+        new Animal(){ Name = "Tiger" },
+        new Cat(){ Name = "Lion" }
+    };
+
+    GenericList<Cat> cats = new()
+    {
+        new Cat(){ Name = "Egyptian Mau" },
+        new Cat(){ Name = "Siamese" }
+    };
+
+    GenericList<Customer> customers = new()
+    {
+        new Customer(){ Name = "John Doe" },
+        new Customer(){ Name = "Jane Doe" }
+    };
+}
